@@ -1,4 +1,4 @@
-import { Component, Input, SimpleChange } from '@angular/core';
+import { Component, Input, SimpleChanges } from '@angular/core';
 
 @Component({
   selector: 'app-counter',
@@ -18,12 +18,16 @@ export class Counter {
     console.log('-'.repeat(10));
   }
 
-  ngOnChanges(changes: SimpleChange) {
+  ngOnChanges(changes: SimpleChanges) {
     // NO ASYNC AQUI
     // Antes y durante render
     console.log('ngOnChanges');
     console.log('-'.repeat(10));
     console.log(changes);
+    const durationChange = changes['duration'];
+    if (durationChange && durationChange.currentValue !== durationChange.previousValue) {
+      this.doSomething();
+    }
   }
 
   ngOnInit() {
@@ -48,6 +52,11 @@ export class Counter {
     // justo antes de destruir el componente
     console.log('ngOnDestroy');
     console.log('-'.repeat(10));
+  }
+
+  doSomething() {
+    console.log('change duration');
+    // Async
   }
 
 }
