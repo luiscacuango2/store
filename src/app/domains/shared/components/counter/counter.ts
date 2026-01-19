@@ -17,14 +17,15 @@ export class Counter {
     console.log('-'.repeat(10));
   }
 
-  ngOnChanges() {
+  ngOnChanges(changes: SimpleChange) {
     // NO ASYNC AQUI
     // Antes y durante render
     console.log('ngOnChanges');
     console.log('-'.repeat(10));
+    console.log(changes);
   }
 
-  ngOnInit(changes: SimpleChange) {
+  ngOnInit() {
     // NO ASYNC AQUI
     // Antes render
     console.log('ngOnInit');
