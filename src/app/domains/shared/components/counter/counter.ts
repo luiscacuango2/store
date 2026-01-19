@@ -13,6 +13,7 @@ export class Counter {
   constructor() {
     // NO ASYNC AQUI
     // Antes render
+    // Corre una vez
     console.log('constructor');
     console.log('-'.repeat(10));
   }
@@ -26,16 +27,26 @@ export class Counter {
   }
 
   ngOnInit() {
-    // NO ASYNC AQUI
-    // Antes render
+    // ES ASYNC, THEN SUBSCRIBE
+    // Despues render
+    // Corre una vez
     console.log('ngOnInit');
     console.log('-'.repeat(10));
+    console.log('Duration => ', this.duration);
+    console.log('Message => ', this.message);
   }
 
   ngAfterViewInit() {
-    // AQUI SI ASYNC
     // Despues render
+    // hijos ya fueron pintados
     console.log('ngAfterViewInit');
+    console.log('-'.repeat(10));
+  }
+
+  ngOnDestroy() {
+    // Despues render
+    // justo antes de destruir el componente
+    console.log('ngOnDestroy');
     console.log('-'.repeat(10));
   }
 

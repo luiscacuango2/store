@@ -4,6 +4,11 @@
 <p>
     <input type="text" [value]="message()" (change)="changeMessage($event)">
 </p>
-<p>
-    <app-counter [duration]="duration()" [message]="message()"/>
-</p>
+
+@if (duration() > 0) {
+  <p>
+    <app-counter [duration]="duration()" [message]="message()" />
+  </p>
+} @else {
+  <p>La duración debe ser mayor a 0 para iniciar el contador.</p>
+}
