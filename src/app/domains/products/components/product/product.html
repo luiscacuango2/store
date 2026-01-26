@@ -1,13 +1,21 @@
-<div class="group rounded-1g border">
-    <a href="#" class="w-full overflow-hidden rounded-t-1g bg-gray-200">
-      <img [src]="product.image" [alt]="product.title" class="h-full w-full object-cover object-center group-hover:opacity-75">
-    </a>
+<div class="group rounded-lg border border-gray-200 bg-white hover:shadow-md transition-shadow">
+    <div class="w-full bg-white">
+      <img 
+        [src]="product.image" 
+        [alt]="product.title" 
+        class="w-full h-52 object-cover border-b border-gray-100 block"
+      >
+    </div>
     <div class="flex flex-col space-y-2 p-4">
-      <h3 class="text-sm text-gray-700">{{ product.title }}</h3>
-      <p class="text-lg font-medium text-gray-900">{{product.price}}</p>
-      <p class="text-sm font-medium text-gray-500">{{product.createdAt}}</p>
-      <p>{{ product.description }}</p>
-      <button class="text-black bg-gray-200 font-medium rounded-lg text-sm px-5 py-2.5 w-full hover:bg-gray-950 hover:text-white"
-        (click)="addToCartHandler()">Agregar al carrito</button>
+      <h3 class="text-sm text-gray-700 font-medium line-clamp-1">{{ product.title }}</h3>
+      <p class="text-lg font-bold text-gray-900">{{ product.price | currency }}</p>
+      <p class="text-[10px] text-gray-400 font-semibold uppercase tracking-tight">
+        Lanzamiento: {{ product.createdAt | date }}
+      </p>
+      <button 
+        class="mt-2 text-black bg-gray-100 font-semibold rounded-lg text-sm px-5 py-2.5 w-full hover:bg-black hover:text-white transition-all cursor-pointer"
+        (click)="addToCartHandler()">
+        Agregar al carrito
+      </button>
     </div>
   </div>
