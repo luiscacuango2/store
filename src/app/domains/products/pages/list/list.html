@@ -1,14 +1,11 @@
-<div class="grid grid-cols-3 gap-8">
-    <app-product [title]="'Producto 1'" [price]="12" img="https://picsum.photos/640/640?r=23" 
-    [description]="'Descripción del producto 1'" (addToCart)="fromChild($event)"/>
-    <app-product [title]="'Producto 2'" [price]="24" img="https://picsum.photos/640/640?r=24" 
-    [description]="'Descripción del producto 2'" (addToCart)="fromChild($event)"/>
-    <app-product [title]="'Producto 3'" [price]="36" img="https://picsum.photos/640/640?r=25" 
-    [description]="'Descripción del producto 3'" (addToCart)="fromChild($event)"/>
-    <app-product [title]="'Producto 4'" [price]="48" img="https://picsum.photos/640/640?r=26" 
-    [description]="'Descripción del producto 4'" (addToCart)="fromChild($event)"/>
-    <app-product [title]="'Producto 5'" [price]="60" img="https://picsum.photos/640/640?r=27" 
-    [description]="'Descripción del producto 5'" (addToCart)="fromChild($event)"/>
-    <app-product [title]="'Producto 6'" [price]="72" img="https://picsum.photos/640/640?r=28" 
-    [description]="'Descripción del producto 6'" (addToCart)="fromChild($event)"/>
+<div class="container mx-auto">
+    <app-header />
+    <div class="grid grid-cols-4 gap-8 mt-5">
+        @for (product of products(); track $index) {
+            <app-product 
+            [product]="product" 
+            (addToCart)="fromChild($event)"
+            />
+        }
+    <div>
 </div>
