@@ -1,9 +1,9 @@
 import { Component, inject, signal } from '@angular/core';
-import { Product } from './../../components/product/product';
-import { Products } from '../../../shared/models/product.model';
-import { Header } from "../../../shared/components/header/header";
-import { CartService } from '../../../shared/services/cart';
-import { ProductService } from '../../../shared/services/product';
+import { Product } from '@products/components/product/product';
+import { Products } from '@shared/models/product.model';
+import { Header } from "@shared/components/header/header";
+import { CartService } from '@shared/services/cart';
+import { ProductService } from '@shared/services/product';
 
 @Component({
   selector: 'app-list',
