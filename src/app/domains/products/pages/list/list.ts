@@ -3,6 +3,7 @@ import { Product } from './../../components/product/product';
 import { Products } from '../../../shared/models/product.model';
 import { Header } from "../../../shared/components/header/header";
 import { CartService } from '../../../shared/services/cart';
+import { ProductService } from '../../../shared/services/product';
 
 @Component({
   selector: 'app-list',
@@ -14,59 +15,18 @@ export class List {
 
   products = signal<Products[]>([]);
   private cartService = inject(CartService);
+  private productsService = inject(ProductService);
 
-  constructor() {
-    const initProducts: Products[] = [
-      {
-        id: 1,
-        title: 'Producto 1',
-        price: 100,
-        image: 'https://picsum.photos/640/640?r23',
-        description: 'Descripción del producto 1',
-        createdAt: new Date().toISOString()
+  ngOnInit() {
+    this.productsService.getProducts()
+    .subscribe({
+      next: (products) => {
+        this.products.set(products);
       },
-      {
-        id: 2,
-        title: 'Producto 2',
-        price: 200,
-        image: 'https://picsum.photos/640/640?r13',
-        description: 'Descripción del producto 2',
-        createdAt: new Date().toISOString()
-      },
-      {
-        id: 3,
-        title: 'Producto 3',
-        price: 300,
-        image: 'https://picsum.photos/640/640?r33',
-        description: 'Descripción del producto 3',
-        createdAt: new Date().toISOString()
-      },
-      {
-        id: 1,
-        title: 'Producto 4',
-        price: 100,
-        image: 'https://picsum.photos/640/640?r43',
-        description: 'Descripción del producto 1',
-        createdAt: new Date().toISOString()
-      },
-      {
-        id: 2,
-        title: 'Producto 5',
-        price: 200,
-        image: 'https://picsum.photos/640/640?r53',
-        description: 'Descripción del producto 2',
-        createdAt: new Date().toISOString()
-      },
-      {
-        id: 3,
-        title: 'Producto 6',
-        price: 300,
-        image: 'https://picsum.photos/640/640?r63',
-        description: 'Descripción del producto 3',
-        createdAt: new Date().toISOString()
-      },
-    ];
-    this.products.set(initProducts);
+      error: () => {
+        console.error('Error al cargar los productos.');
+      } 
+    });
   }
 
   addToCart(product: Products) {
